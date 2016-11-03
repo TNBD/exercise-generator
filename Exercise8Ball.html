@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+<link rel="stylesheet" type="text/css"
+ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+<style type="text/css">
+body {
+  background: #ffb3b3;
+  color: #333;
+}
+#wrapper {
+  width: 600px;
+  margin: 80px auto;
+  text-align: center;
+}
+p, input, button {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 24px;
+}
+#answerContainer {
+  opacity: 0;
+}
+p {
+  padding: 20px 0;
+}
+input {
+  width: 500px;
+  padding: 5px 15px;
+  background: #fff;
+  border: 2px solid #ddd;
+  outline: none;
+}
+input:focus {
+  border: 2px solid #888;
+}
+button {
+  background: #ffcccc;
+  color: #666;
+  border: 2px solid #666;
+  border-radius: 8px;
+  margin-left: 10px;
+  padding: 5px 15px;
+  outline: none;
+}
+button:hover {
+  background: #ffc;
+  color: #222;
+  border: 2px solid #222;
+  cursor: pointer;
+}
+</style>
+
+<script>
+window.onload = function () {
+  var answers = [
+    'Jessica Smith: 40 minute Flat Abs Walk', 'Jessica Smith: 40 minute indoor jogging','Denise Austin: Ultimate Fat Burner Complete Weight Loss Workout', 'Denise Austin: Ultimate Fat Burn Workout (2X)'];
+
+  var container = document.getElementById('answerContainer'),
+      opacityPercent,
+      previousAnswer;
+  function updateOpacity() {
+    opacityPercent += 1;
+    container.style.opacity = opacityPercent / 100;
+    if (opacityPercent < 100) {
+      window.requestAnimationFrame(updateOpacity);
+    }
+  }
+  function makeVisible() {
+    container.style.opacity = '0';
+    opacityPercent = -1;
+    updateOpacity();
+  }
+  opacityPercent = -1;
+ 
+  document.getElementById('answerButton').onclick = function () {
+    while (true) {
+      var answer = answers[Math.floor(Math.random() * answers.length)];
+      if (answers.length == 1 || answer != previousAnswer) {
+        previousAnswer= answer;
+        break;
+      }
+    }
+    container.className = '';
+    container.innerHTML = answer;
+    makeVisible();
+  };
+};
+</script>
+</head>
+<body>
+<div id="wrapper">
+<p> October 20, 2016</p>
+<p> 40 Minutes of Cardio</p>
+
+<p> What videos can you do to meet today's fitness goal? Click the button for ideas. </p>
+
+<p>
+  
+</p>
+
+<p>
+  <button id="answerButton"> Click to get my answer. </button>
+</p>
+
+<p id="answerContainer"></p>
+
+</div>
+</body>
+</html>
